@@ -181,11 +181,6 @@ public class DPPractise {
         return -1;
     }
 
-    class State {
-        int to;
-        int weight;
-    }
-
     public int[] shortestDistance(int n, int[][] edges) {
         int[] dist = new int[n];
         Arrays.fill(dist, Integer.MAX_VALUE);
@@ -201,5 +196,34 @@ public class DPPractise {
             }
         }
         return dist;
+    }
+
+    public int[] twoSum(int[] nums, int target) {
+
+        int left = 0;
+        int right = nums.length - 1;
+        // Arrays.sort(nums);
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum == target) {
+                return new int[]{left, right};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return new int[]{-1, -1};
+    }
+
+    public int[] twoSumOP(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[]{i, map.get(target - nums[i])};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[]{-1, -1};
     }
 }
